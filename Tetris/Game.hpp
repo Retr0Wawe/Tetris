@@ -1,8 +1,6 @@
 #pragma once
 
 #include <array>
-#include <windows.h>
-#include <random>
 
 #include "Defines.hpp"
 
@@ -38,6 +36,8 @@ namespace game
 		void key_handler(eKeys _key) override;
 
 		void delete_line();		//удалить собранную линию
+
+		void print_next_figure();
 
 		void start();	//запустить игру
 	};

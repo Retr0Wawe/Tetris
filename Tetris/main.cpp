@@ -2,12 +2,18 @@
 #include <cstdint>
 #include <stdexcept>
 
+using namespace game;
+
 int main()
 {
-	try {
+	Figure fi;
 
+	Tetris tetr(fi, 183, 20);
+
+	try {
+		tetr.start();
 	}
-	catch (const std::runtime_error& err) {		//ловим все возможные ошибки
+	catch (const std::exception& err) {		//ловим все возможные ошибки
 		std::printf("%s", err.what());			//узнаем что за ошибки
 	}
 }

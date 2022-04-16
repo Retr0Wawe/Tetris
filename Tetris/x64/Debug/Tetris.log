@@ -1,8 +1,0 @@
-﻿  Figure.cpp
-C:\Users\Retr0\source\repos\Tetris\Tetris\Defines.hpp(13,26): warning C4309: инициализация: усечение константного значения
-  Game.cpp
-C:\Users\Retr0\source\repos\Tetris\Tetris\Defines.hpp(13,26): warning C4309: инициализация: усечение константного значения
-  main.cpp
-C:\Users\Retr0\source\repos\Tetris\Tetris\Defines.hpp(13,26): warning C4309: инициализация: усечение константного значения
-  Создание кода...
-  Tetris.vcxproj -> C:\Users\Retr0\source\repos\Tetris\x64\Debug\Tetris.exe

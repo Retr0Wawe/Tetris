@@ -6,24 +6,21 @@ namespace game
 {
 	void Figure::create() 
 	{
-        for (int i = 0; i < figure_size; i++) {
+        for (int i = 0; i < figure_size; i++) {         //отрисовка поля
             for (int j = 0; j < figure_size; j++) {
-                figure_field[j][i] = figurs_sample[next_map][j][i];
+                figure_field[j][i] = figurs_sample[next_figure][j][i];
             }
         }
 
-        py = 0; px = field_x / 2;
+        py = 0; px = field_x / 2;   //отрисовка фигуры по середине поля(по x координате)
 
-        next_map = utils::randomize(figure_counts - 1);
-
-        utils::cursor_to_xy(field_x + 1, 2);
-        Tetris::print_next_figure();
+        next_figure = utils::randomize(figure_counts - 1);     //рандомный выбор фигуры
+        Tetris::print_next_figure();    //напечатывание слудющей фигуры
 	}
 
     void Figure::rotate()
     {
-        bool _map[figure_size][figure_size];
-
+        int _map[figure_size][figure_size];
         int sx = figure_size, sy = figure_size;
 
         for (int i = 0; i < figure_size; i++) {

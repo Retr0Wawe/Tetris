@@ -7,13 +7,12 @@ namespace game
 {
 	//все переменные считаются на этапе компиляции чтобы не занимать runtime'а(то есть сделать пронга)
 
-	constexpr int figure_counts = 7;	//количество фигур тетриса
+	inline int py, px = 0;		//переменные - координаты относительно которых перемещаются фигуры по x, y
+
+	constexpr int figure_counts = 4;	//количество фигур тетриса
 	constexpr int figure_size = 4;
 
-	constexpr char SCR_SP = 183;	//закрашивание поля(ascii code)
-	constexpr char SCR_OB = 20;		//закрашивание фигуры(ascii code)
-
-	constexpr std::size_t field_x = 15;		//переменные хранящие разрешение поля
+	constexpr std::size_t field_x = 20;		//переменные хранящие разрешение поля
 	constexpr std::size_t field_y = 20;
 
 	template<typename _T, std::size_t _X, std::size_t _Y = _X>	//псевдоним для двумерного массива с шаблонными параметрами

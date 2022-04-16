@@ -8,13 +8,6 @@ namespace game
 {
 	namespace utils
 	{
-		void cursor_to_xy(int _x, int _y)		//перевод курсора по координатам
-		{
-			COORD screen;
-			HANDLE hOutput = GetStdHandle(STD_OUTPUT_HANDLE);
-			screen.X = _x, screen.Y = _y;
-		}
-
 		std::size_t randomize(std::size_t _num)		//рандомайзер для случайного значения
 		{
 			srand(time(NULL));
@@ -27,7 +20,7 @@ namespace game
 			while (clock() - t < _seconds);
 		}
 
-		int inverse(int _x)
+		int inverse(int _x)		//обратное получение координаты
 		{
 			return 3 - _x;
 		}

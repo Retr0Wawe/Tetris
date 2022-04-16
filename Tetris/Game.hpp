@@ -13,14 +13,12 @@ namespace game
 	public:
 		IFieldConsole();
 
-		IFieldConsole(int _field_char, int _figure_char);	
-					//конструткор для инициализации переменных для отрисовки в ввиде ascii кодов
+		IFieldConsole(int _field_char, int _figure_char);
+		//конструткор для инициализации переменных для отрисовки в ввиде ascii кодов
 
 		virtual ~IFieldConsole() = default;	//вирт. десктруктор чтобы не нарушать порядок очистки обьектов при наследовании
 	public:
 		virtual void print() = 0;	//чистая виртуальная функция для переопределения
-
-		virtual void clear_screen(int _sym) = 0;
 
 		virtual bool key_handler(eKeys _key) = 0;
 	protected:
@@ -39,8 +37,6 @@ namespace game
 		~Tetris() = default;
 	public:
 		void print() override;	//отрисовка поля
-
-		void clear_screen(int _sym = 0) override;	//очистка экрана
 
 		bool key_handler(eKeys _key) override;		//обработчик нажатий
 

@@ -24,6 +24,12 @@ namespace game
             {1, 1, 1, 0},
             {0, 0, 0, 0},
             {0, 0, 0, 0}
+        },
+        {
+            {1, 0, 0, 0},
+            {1, 0, 0, 0},
+            {1, 0, 0, 0},
+            {1, 0, 0, 0}
         }
     };
 
@@ -31,7 +37,7 @@ namespace game
 
 	class Figure	//класс фигур для удобной инициализации и работы с ними
 	{
-        friend class Tetris;
+        friend class Tetris;    //обьявление класса tetris дружественным фигуре 
 	public:
 		Figure() = default;
 
@@ -44,6 +50,6 @@ namespace game
 		virtual bool get_move(const Tetris& _tet, int _x, int _y);    //опуститься вниз
 	protected:
 		double_array<int, figure_size> figure_field = { 0 };     //массив для фигур
-        static inline int next_map;
+        static inline int next_figure;     //переменная отвечающая за следующую фигуру
 	};
 }

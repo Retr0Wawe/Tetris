@@ -29,8 +29,8 @@ namespace game
 		for (int i = 0; i < field_x; i++) {
 			for (int j = 0; j < field_y; j++) {
 				buff[j][i] = field[j][i];			//вывод из буфера на экран
-			}	
-		}						
+			}
+		}
 
 		for (int i = 0; i < figure_size; i++) {
 			for (int j = 0; j < figure_size; j++) {
@@ -40,109 +40,102 @@ namespace game
 			}
 		}
 
-		utils::cursor_to_xy(0, 0); //перейти в точку с координатами 0, 0
-
-		system("cls");
+		system("cls");		//очищаем экран чтобы создать нужный эффект отрисовки
 
 		for (int i = 0; i < field_y; i++) {
-			for (int j = 0; j < field_x	; j++) {
+			for (int j = 0; j < field_x; j++) {
 				putchar(buff[j][i] == 0 ? field_char : figure_char); //если элемент в буфере не часть фигуры, то закрасить полем
 			}
 			putchar('\n');
 		}
 	}
 
-	void Tetris::clear_screen(int _sym)
-	{
-		for (int i = 0; i < field_x; i++) {
-			for (int j = 0; j < field_y; j++) {
-				field[j][i] = _sym;
-			}
-		}
-	}
-
 	bool Tetris::key_handler(eKeys _key)
 	{
-		switch (_key)
+		switch (_key)		//исходя из ключа, проходим в нужный case
 		{
-		case eKeys::KEY_UP:
+		case eKeys::KEY_UP:		//переворот фигуры если нажата клавиша
 			figura.rotate();
 			break;
-		case eKeys::KEY_SPACE:
+		case eKeys::KEY_SPACE:	//переворот фигуры если нажата клавиша
 			figura.rotate();
 			break;
-		case eKeys::KEY_DOWN:
-			for (; figura.get_move(*this, px, py + 1); py++) {
+		case eKeys::KEY_DOWN:	//движение вниз
+			while (figura.get_move(*this, px, py + 1)) {
+				py++;
 			}
-			for (int i = 0; i < figure_size; i++) {
+			for (int i = 0; i < figure_size; i++) {		//отрисовка фиугры внизу поля
 				for (int j = 0; j < figure_size; j++) {
 					if (figura.figure_field[j][i]) {
 						field[px + j][py + i] = 1;
 					}
 				}
 			}
-			print();
-			figura.create();
-			
+			print();		//отрисовка фигуры
+			figura.create();	//создание следующей
 			break;
-		case eKeys::KEY_LEFT:
+		case eKeys::KEY_LEFT:	//движение влево
 			if (figura.get_move(*this, px - 1, py)) {
-				px--;
+				px--;		//смещение фигуры влево(по координате x)
 			}
 			break;
-		case eKeys::KEY_RIGHT:
+		case eKeys::KEY_RIGHT:	//движение вправо
 			if (figura.get_move(*this, px + 1, py)) {
-				px++;
+				px++;		//смещаем положение фигуры вправо(по координате x)
 			}
 			break;
 		}
 		return false;
 	}
 
-	void Tetris::print_next_figure()
+	void Tetris::print_next_figure()	//напечатать следуюущую фигуру
 	{
-		utils::cursor_to_xy(field_x + 1, 2);
-
 		for (int i = 0; i < figure_size; i++) {
-			utils::cursor_to_xy(field_x + 2, i + 3);
 			for (int j = 0; j < figure_size; j++) {
-				putchar(figurs_sample[Figure::next_map][j][i] == 0 ? ' ' : 20); //если не часть фигуры, то закрасить символом поля, иначе закрасить фигурой
+				putchar(figurs_sample[Figure::next_figure][j][i] == 0 ? ' ' : 20); //если не часть фигуры, то закрасить символом поля, иначе закрасить фигурой
 			}
 		}
 	}
 
 	void Tetris::start()
 	{
-		time_t time = clock();
+		time_t time = clock();		//берем начало времени
 
 		px = field_x / 2;
 		py = 0;
 
-		Figure::next_map = utils::randomize(figure_counts);
-		figura.create();
+		Figure::next_figure = utils::randomize(figure_counts);		//рандомно выбираем любую фигуру
+		figura.create();		//создание фигуры
 
-		while (true) {
+		while (true) {			//цикл отрисовки
 			if (_kbhit()) {
-				key_handler(eKeys(_getch()));
+				key_handler(eKeys(_getch()));		//обработка нажатий
 			}
 
-			if ((clock() - time) > 50) {
+			if ((clock() - time) > 100) {
 				time = clock();
-				if (!(figura.get_move(*this, px, py + 1))) {
+				if (!(figura.get_move(*this, px, py + 1))) {		//если фигура не двигается то отрисовывать поле
 					for (int i = 0; i < figure_size; i++) {
 						for (int j = 0; j < figure_size; j++) {
 							if (figura.figure_field[j][i]) {
-								field[px + j][py + i] = 1;
+								field[px + j][py + i] = 1;		//закрашиваем поле
 							}
 						}
 					}
-					figura.create();
+					figura.create();	//создаеи следующую фигуру
 				}
 				else {
 					py++;
 				}
 			}
-			print();
+			print();	//смещение фигуры вниз относительно таймера, если не было никаких действийfor(int i = 0; i < SIZEX; i++) 
+
+			for (int i = 0; i < field_x; i++) {
+				if (field[i][0])//если экранный у и у фигуры совпали и равны 0,то конец игры ,поле заполнилось до верха
+				{
+					return;
+				}
+			}
 		}
 	}
 }

@@ -23,7 +23,7 @@ namespace game
         int _map[figure_size][figure_size];
         int sx = figure_size, sy = figure_size;
 
-        for (int i = 0; i < figure_size; i++) {
+        for (int i = 0; i < figure_size; i++) {     
             for (int j = 0; j < figure_size; j++) {
                 _map[j][i] = figure_field[j][i];
                 if (figure_field[j][i]) {
@@ -55,18 +55,18 @@ namespace game
 
     bool Figure::get_move(const Tetris& _tet, int _x, int _y)
     {
-        if (_x < 0) {
-            return false;
+        if (_x < 0) {	// если x пустой, то возвращаем false 
+            return false;		
         }
 
-        for (int i = 0; i < figure_size; i++) {
+        for (int i = 0; i < figure_size; i++) {		
             for (int j = 0; j < figure_size; j++) {
-                if (figure_field[j][i]) {
-                    if ((j + _x >= field_x) || (i + _y >= field_y)) {
-                        return false;
+                if (figure_field[j][i]) {		
+                    if ((j + _x >= field_x) || (i + _y >= field_y)) {	 
+                        return false;	//проверяем не выходят ли значения за пределы массива
                     }
 
-                    if (_tet.field[j + _x][i + _y]) {
+                    if (_tet.field[j + _x][i + _y]) {	//проверяем не равны ли значения нулю
                         return false;
                     }
                 }

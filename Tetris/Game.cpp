@@ -40,14 +40,13 @@ namespace game
 			}
 		}
 
-		system("cls");		//очищаем экран чтобы создать нужный эффект отрисовки
-
 		for (int i = 0; i < field_y; i++) {
 			for (int j = 0; j < field_x; j++) {
 				putchar(buff[j][i] == 0 ? field_char : figure_char); //если элемент в буфере не часть фигуры, то закрасить полем
 			}
 			putchar('\n');
 		}
+		system("cls");		//очищаем экран чтобы создать нужный эффект отрисовки
 	}
 
 	bool Tetris::key_handler(eKeys _key)

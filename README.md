@@ -1,2 +1,2 @@
 # Tetris
-Tetris for windows
+A simple tetris for windows.

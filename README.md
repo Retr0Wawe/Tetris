@@ -1,2 +1,3 @@
 # Tetris
-A simple tetris for windows.
+Simple console tetris written for windows
+![Screenshot](https://github.com/Retr0Wawe/Tetris/blob/main/Screenshot.PNG)
